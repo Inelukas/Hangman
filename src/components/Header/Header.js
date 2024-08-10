@@ -7,7 +7,8 @@ const StyledHeader = styled.header`
   top: 0px;
   width: 100%;
   height: 10%;
-  background: darkgreen;
+  background: var(--side-color);
+  color: var(--primary-color);
   z-index: 3;
 `;
 

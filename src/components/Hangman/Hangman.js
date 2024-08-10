@@ -108,25 +108,25 @@ export function Hangman({ missCount, gameWon }) {
   return (
     <StyledHangman>
       <div className="gallow-bottom" />
-      <div className="gallow-stake-vertical" />
-      <div className="gallow-stake-horizontal" />
-      <div className="gallow-stake-diagonal" />
-      <div className="gallow-hanging-part" />
-      {missCount > 0 && (
+      {missCount > 0 && <div className="gallow-stake-vertical" />}
+      {missCount > 1 && <div className="gallow-stake-horizontal" />}
+      {missCount > 2 && <div className="gallow-stake-diagonal" />}
+      {missCount > 3 && <div className="gallow-hanging-part" />}
+      {missCount > 4 && (
         <div className="hangman-head">
           <div className="face">
             {gameWon && "😇"}
-            {!gameWon && missCount <= 3 && "😞"}
-            {!gameWon && missCount > 3 && missCount <= 5 && "😨"}
-            {!gameWon && missCount > 5 && "😫"}
+            {!gameWon && missCount <= 7 && "😞"}
+            {!gameWon && missCount > 7 && missCount <= 9 && "😨"}
+            {!gameWon && missCount > 9 && "😫"}
           </div>
         </div>
       )}
-      {missCount > 1 && <div className="hangman-body" />}
-      {missCount > 2 && <div className="hangman-left-leg" />}
-      {missCount > 3 && <div className="hangman-right-leg" />}
-      {missCount > 4 && <div className="hangman-left-arm" />}
-      {missCount > 5 && <div className="hangman--right-arm" />}
+      {missCount > 5 && <div className="hangman-body" />}
+      {missCount > 6 && <div className="hangman-left-leg" />}
+      {missCount > 7 && <div className="hangman-right-leg" />}
+      {missCount > 8 && <div className="hangman-left-arm" />}
+      {missCount > 9 && <div className="hangman--right-arm" />}
     </StyledHangman>
   );
 }

@@ -13,7 +13,7 @@ const StyledGame = styled.div`
 
   .main-part {
     display: flex;
-    gap: 20vw;
+    gap: 10vw;
   }
 
   .game-end {
@@ -44,8 +44,9 @@ export function Game() {
     const response = await fetch(
       "https://random-word-api.herokuapp.com/word?lang=de"
     );
-    const wordData = await response.json();
-    setCurrentWord(...wordData);
+    const wordArray = await response.json();
+    const word = wordArray[0].toLowerCase();
+    setCurrentWord(word);
   }
 
   useEffect(() => {
@@ -85,7 +86,7 @@ export function Game() {
               <h1>Congratulations!</h1>
               <button onClick={handleNewGame}>Play again</button>
             </div>
-          ) : !gameWon && missCount <= 5 ? (
+          ) : !gameWon && missCount <= 9 ? (
             <InputField
               currentWord={currentWord}
               onUpdate={updateWord}
@@ -101,9 +102,11 @@ export function Game() {
         <Hangman missCount={missCount} gameWon={gameWon} />
       </div>
       <div>
-        {currentWord.split("").map((letter) => {
-          return guessedLetters.includes(letter) || missCount === 6
-            ? letter
+        {currentWord.split("").map((letter, index) => {
+          return guessedLetters.includes(letter) || missCount === 10
+            ? index === 0
+              ? letter.toUpperCase()
+              : letter
             : " _ ";
         })}
       </div>

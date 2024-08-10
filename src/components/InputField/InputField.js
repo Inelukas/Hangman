@@ -2,10 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const StyledInputField = styled.div`
-  background: white;
-  width: 200px;
-  height: 200px;
+  background: var(--side-color);
+  color: var(--primary-color);
+  border-radius: 20px;
   font-size: 20px;
+  padding: 5px;
 
   form {
     height: 100%;
@@ -13,6 +14,13 @@ const StyledInputField = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
+    button {
+      padding: 5px;
+      background: white;
+      border: none;
+      border-radius: 10px;
+    }
   }
 `;
 
@@ -34,7 +42,9 @@ export function InputField({ currentWord, onUpdate, onMiss }) {
       onUpdate(letter.toLowerCase());
     } else {
       onMiss();
-      setWrongLetters([...wrongLetters, letter]);
+      if (!wrongLetters.includes(letter)) {
+        setWrongLetters([...wrongLetters, letter]);
+      }
     }
     setLetter("");
     event.target.input.focus();
