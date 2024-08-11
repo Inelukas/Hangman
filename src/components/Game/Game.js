@@ -42,7 +42,7 @@ export function Game() {
     if (hasFetched) return;
     hasFetched = true;
     const response = await fetch(
-      "https://random-word-api.herokuapp.com/word?lang=de"
+      "https://random-word-api.vercel.app/api?words=1"
     );
     const wordArray = await response.json();
     const word = wordArray[0].toLowerCase();

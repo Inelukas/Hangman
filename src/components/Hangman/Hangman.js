@@ -112,7 +112,7 @@ export function Hangman({ missCount, gameWon }) {
       {missCount > 1 && <div className="gallow-stake-horizontal" />}
       {missCount > 2 && <div className="gallow-stake-diagonal" />}
       {missCount > 3 && <div className="gallow-hanging-part" />}
-      {missCount > 4 && (
+      {(missCount > 4 || gameWon) && (
         <div className="hangman-head">
           <div className="face">
             {gameWon && "😇"}
